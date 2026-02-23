@@ -72,6 +72,7 @@ main .subTitle {
   margin-left: 1em;
 }
 
+/*メニュー*/
 .gMenu {
   position: fixed;
   right: 0;
@@ -146,6 +147,7 @@ main .subTitle {
 .gMenu .menuBtn:checked ~ .menuIcon .navIcon::before {transform: rotate(-45deg);top: 0;}
 .gMenu .menuBtn:checked ~ .menuIcon .navIcon::after {transform: rotate(45deg);top: 0;}
 
+
 .conceptSec,
 .servSec,
 .qaSec,
@@ -188,6 +190,9 @@ main .subTitle {
 }
 .servSec ul li .more a {
   align-items: center;
+}
+.servSec ul li .more a:hover {
+  text-decoration: underline;
 }
 .servSec ul li .more:after {
   content: "";
@@ -319,6 +324,7 @@ textarea {
 }
 textarea {
   height: 120px;
+  text-align: left;
 }
 
 input[type="radio"] {
@@ -463,6 +469,11 @@ footer p {
   .gMenu .menu li a {
     padding: 0;
     font-weight: normal;
+  }
+  .gMenu .menu li a:hover {
+    background-color: #e6e6fa;
+    border-radius: 50%;
+    padding: 15px;
   }
   .gMenu .menu li:first-of-type {
     padding: 0;
@@ -644,6 +655,7 @@ footer p {
     height: 52px;
     margin-top: 8px;
     padding: 4px 8px;
+    text-align: left;
   }
   input[type="email"] {
     max-width: 664px;
