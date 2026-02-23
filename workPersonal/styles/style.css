@@ -88,7 +88,7 @@ main .subTitle {
   height: 12px;
   z-index: 100;
 }
-.gMenu .menuIcon .navicon {
+.gMenu .menuIcon .navIcon {
   background: #B71B26;
   display: block;
   height: 2px;
@@ -96,8 +96,8 @@ main .subTitle {
   position: relative;
   transition: background .4s ease-out;
 }
-.gMenu .menuIcon .navicon::before,
-.gMenu .menuIcon .navicon::after {
+.gMenu .menuIcon .navIcon::before,
+.gMenu .menuIcon .navIcon::after {
   background: #B71B26;
   content: '';
   display: block;
@@ -106,8 +106,8 @@ main .subTitle {
   transition: all .4s ease-out;
   width: 100%;
 }
-.gMenu .menuIcon .navicon::before {top: 10px;}
-.gMenu .menuIcon .navicon::after {top: -10px;}
+.gMenu .menuIcon .navIcon::before {top: 10px;}
+.gMenu .menuIcon .navIcon::after {top: -10px;}
 
 .gMenu .menu {
   position: relative;
@@ -142,9 +142,9 @@ main .subTitle {
   transition: max-height .6s, background-color .8s ease-out .5s;
   background-color: #ffffffe6;
 }
-.gMenu .menuBtn:checked ~ .menuIcon .navicon {background: transparent;}
-.gMenu .menuBtn:checked ~ .menuIcon .navicon::before {transform: rotate(-45deg);top: 0;}
-.gMenu .menuBtn:checked ~ .menuIcon .navicon::after {transform: rotate(45deg);top: 0;}
+.gMenu .menuBtn:checked ~ .menuIcon .navIcon {background: transparent;}
+.gMenu .menuBtn:checked ~ .menuIcon .navIcon::before {transform: rotate(-45deg);top: 0;}
+.gMenu .menuBtn:checked ~ .menuIcon .navIcon::after {transform: rotate(45deg);top: 0;}
 
 .conceptSec,
 .servSec,
@@ -192,12 +192,13 @@ main .subTitle {
 .servSec ul li .more:after {
   content: "";
   margin-left: 5px;
+  margin-top: 3px;
   border-style: solid;
   border-width: 4.75px 0 4.75px 4.75px;
   border-color: transparent transparent transparent #333333;
 }
 
-/*次回見直す*/
+/*施工の流れ*/
 .flowSec {
   padding-top: 16px;
 }
@@ -211,7 +212,7 @@ main .subTitle {
 .flowSec .subTitle:after {
   border-top: 1px solid #B71B26;
 }
-.flowSec ul .arrow1 {
+.flowSec ul .flowItem {
   width: 300px;
   height: 32px;
   background-color: #333333;
@@ -219,43 +220,34 @@ main .subTitle {
   padding: 8px 0;
   margin: 0 auto;
   color: #ffffff;
-  position: relative;
+  /* position: relative; */
   margin-bottom: 8px;
 }
-/* .flowSec ul .arrow1 {
-    display: inline-block;
-  /* margin-bottom: 32px; */
-/*} */
-.flowSec ul li img {
-  width: 32px;
+.arrow1 {
   height: 16px;
   margin-bottom: 8px;
 }
-/* .flowSec ul .arrow1:after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 16px solid;
-  border-color: #B71B26 transparent transparent;
-}*/
-.flowSec ul img:nth-child(1):after {
+.flowSec ul li img {
+  width: 32px;
+  height: 16px;
+}
+.flowSec ul li:nth-of-type(2) img {
   opacity: 0.6;
 }
-.flowSec ul img:nth-child(2):after {
+.flowSec ul li:nth-child(4) img {
   opacity: 0.7;
 }
-.flowSec ul img:nth-child(3):after {
+.flowSec ul li:nth-child(6) img {
   opacity: 0.8;
 }
-.flowSec ul img:nth-child(4):after {
+.flowSec ul li:nth-child(8) img {
   opacity: 0.9;
 }
-.flowSec ul img:nth-child(5):after {
+.flowSec ul li:nth-child(10) img {
   opacity: 1.0;
 }
 
+/*Q&A*/
 .qaBox {
   display: flex;
 }
@@ -448,7 +440,6 @@ footer p {
     display: none;  
   }
   .gMenu {
-    min-width: 680px;
     position: relative;
     background: transparent;
     align-items: center;
@@ -522,6 +513,7 @@ footer p {
     padding-bottom: 48px;
   }
   
+  /*サービス*/
   .servSec ul {
     max-width: 1020px;
     display: flex;
@@ -533,7 +525,9 @@ footer p {
   .servSec ul li {
     margin-right: 30px;
     margin-left: 30px;
-  }
+    display: flex;              /* liをflexにする */
+    flex-direction: column;     /* 縦並びにする */
+    }
   .servSec ul li:first-of-type {
     margin-left: 0;
   }
@@ -546,11 +540,17 @@ footer p {
   .servSec ul li p {
     letter-spacing: normal;
   }
+  .servSec ul li .more {
+    margin-top: auto;
+  }
 
+  /*施工の流れ*/
   .flowSec {
     margin: 0 auto;
-    padding-left: 223px;
-    padding-right: 223px;
+  }
+  .flowSec > .innerWrap {
+    max-width: 920px;
+    margin: 0 auto;
   }
   .flowSec ul {
     display: flex;
@@ -560,30 +560,31 @@ footer p {
     margin: 0 auto;
     margin-bottom: 48px;
     justify-content: space-between;
-    position: relative;
+    flex-wrap: wrap;
   }
-  .flowSec ul .arrow1 {
-    max-width: 60px;
+  .flowSec ul .flowItem {
+    width: 60px;
     height: 280px;
     padding: 0 16px;
-    writing-mode: vertical-rl;
+    writing-mode: vertical-rl;  /*縦書き*/
     margin: 0;
   }
-  .flowSec ul .arrow1 {
+  .flowSec ul .flowItem {
     margin-bottom: 0;
-    position: relative;
   }
-  /* .flowSec ul .arrow1:after {
-    content: "";
-    position: absolute;
-    bottom: 40%;
-    left: 180%;
+  .arrow1 {
+    align-self: center;
+    width: 60px;
+    height: 40px;
+    margin-bottom: 0;
+  }
+  .flowSec ul li img {
+    width: 60px;
+    height: 30px;
     transform: rotate(-90deg);
-    border: 30px solid;
-    border-color: #B71B26 transparent transparent;
-    margin: 0 auto;
-  } */
+  }
 
+  /*Q&A*/
   .qaSec {
     height: 429.36px;
     text-align: center;
