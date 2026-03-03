@@ -627,13 +627,12 @@ main {
 /* モーダル処理 */
 
 .modalPhoto {
-	width: 283px;
-	height: 283px;
-	margin: auto;
+	width: 288px;
+	height: 288px;
 }
 .modalPhotos {
-	display: flex;
-	margin: auto;
+	text-align: center;
+  padding: 10px 0 0 18px;
 }
 .modalText {
   font-size: 12px;
@@ -660,14 +659,16 @@ main {
 }
 /* モーダルコンテンツ */
 .modalContent {
-	background-color: rgba(1,128,190,0.9);
+	background-color: rgba(244, 244, 244, 0.9);
 	width: 375px;
 	height: 375px;
+  padding: 8px 0 46px;
 }
 
 /* 閉じるボタン */
 .closeBtnOya {
 	text-align: right;
+  padding-right: 8px;
 }
 .closeBtn {
 	width: 28px;
@@ -786,7 +787,7 @@ main {
   .topHero {
     position: relative;
     height: 768px;/*要調整（はみ出す*/
-     width: 1366px;
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -1269,6 +1270,9 @@ main {
   footer ul li:first-of-type {
     padding: 0 0 12px;
   }
+  .nonePC {
+    display: none;
+  }
 
   /*footerロゴ*/
   footer .footLogo {
@@ -1354,18 +1358,19 @@ main {
 
 	/* パンくずナビゲーション */
 	.panNav {
-		width: 1366px;
+		width: 100%;
 		height: 60px;
 		font-size: 20px;
 		font-weight: 400;
 	}
 
 	/* モーダル処理 */
-	
+	.modalPhotos {
+    padding: 4px 0 0 30px;
+  }
 	.modalPhoto {
-		width: 555px;
-		height: 555px;
-		margin: auto;
+		width: 560px;
+		height: 560px;
 	}
 
 	.modalText {
@@ -1379,12 +1384,18 @@ main {
 
 	/* モーダルコンテンツ */
 	.modalContent {
-		background-color: rgba(1,128,190,0.9);
-		width: 675px;
-		height: 675px;
+		width: 633px;
+		height: 633px;
+    padding-top: 20px;
 	}
+  .modalContent.rightPos {
+    margin-left: auto;
+  }
 
 	/* 閉じるボタン */
+  .closeBtnOya {
+    padding-right: 20px;
+  }
 	.closeBtn {
 		width: 36px;
 		height: 36px;
