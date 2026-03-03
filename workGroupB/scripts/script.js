@@ -20,6 +20,10 @@ let autoPlayInterval;
 let slideWidth;
 let startOffset;
 
+//追加
+//矢印連続クリックによる画像非表示防止(アニメーション稼働時は動かない)
+let isAnimation = false;
+
 function setSlideSize () {
   if (window.innerWidth >= 768) {
     //PC
@@ -65,40 +69,50 @@ function updateListBackground() {
   };
 }
 
-
+//追加・変更 ↓
 //nextクリックするとカウント1増える＆インディケーターのドット部分の色変更
 function nextClick() {
+  if (isAnimation) return;
+  isAnimation = true;
+
   slide.style.transition = 'transform 0.6s ease';
   count++;
   slidePos();
-  if (count === totalSlides + 2) {
-    setTimeout(function () {
-      slide.style.transition = 'none';
-      count = 2;
-      slidePos();
-    }, 300);
-  } else {
-    updateListBackground();
-  }
-  updateListBackground();
 }
-
 function prevClick() {
+  if (isAnimation) return;
+  isAnimation = true;
+
   slide.style.transition = 'transform 0.6s ease';
   count--;
   slidePos();
-  if (count === 0) {
-    //一枚目表示
-    //count = totalSlides - 1;
-    setTimeout(function () {
-      slide.style.transition = 'none';
-      count = totalSlides;
-      slidePos();
-    }, 300);
-  }
-  updateListBackground();
 }
 
+//アニメーション終了後の処理
+slide.addEventListener('transitionend', function(e) {
+  //transformの時だけ実行
+  if (e.propertyName !== 'transform') return;
+
+  //右ダミーに到達したら本体へ
+  if (count === totalSlides + 2) {
+    slide.style.transition = 'none';
+    count = 2;
+    slidePos();
+  }
+
+  //左ダミーに到達したら本体へ
+  if (count === 1) {
+    //一枚目表示
+    count = totalSlides + 1;
+    slide.style.transition = 'none';
+    // count = totalSlides;
+    slidePos();
+  }
+
+  updateListBackground();
+  isAnimation = false;
+});
+//追加・変更 ↑
 
 //自動再生用のクリックファンクション  完全再利用可能
 function startAutoPlay() {
@@ -114,14 +128,12 @@ function resetAutoPlayInterval() {
 //矢印クリック後の動き  アロー関数→理解できるファンクションの形に直す
 next.addEventListener('click', function() {
   nextClick();
-  resrtAutoPlayInterval();
+  resetAutoPlayInterval();
 });
 prev.addEventListener('click', function() {
   prevClick();
-  resrtAutoPlayInterval();
+  resetAutoPlayInterval();
 });
-
-
 
 
 //インディケーター外枠
